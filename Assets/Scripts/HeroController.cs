@@ -11,7 +11,7 @@ public class HeroController : MonoBehaviour
 
     float   flipTh = 0.01f,
             horizontalMovement;
-    bool    jump, right, onGround;
+    bool    jump, onGround, prevGround;
     Animator animator;
     Rigidbody2D rigidBody;
     // Start is called before the first frame update
@@ -19,8 +19,8 @@ public class HeroController : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        right = true;
         onGround = true;
+        prevGround = true;
     }
 
     // Update is called once per frame
@@ -28,37 +28,36 @@ public class HeroController : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         jump = Input.GetButtonDown("Jump");
+
+        onGround = CheckGround();
+        if (prevGround != onGround) {
+            Debug.Log(onGround);
+            prevGround = onGround;
+        }
     }
 
     private void FixedUpdate()
     {
         if (jump && onGround) {
-            Debug.Log("Jump!");
-            // onGround = false;
+            onGround = false;
             rigidBody.AddForce(jumpForce * transform.up, ForceMode2D.Impulse);
         }
 
         rigidBody.velocity = new Vector2(horizontalMovement * speed, rigidBody.velocity.y);
-        Debug.Log(rigidBody.velocity);
-        // rigidBody.MovePosition(new Vector2(rigidBody.position.x + horizontalMovement * speed, rigidBody.position.y));
         if (horizontalMovement > flipTh)
-        {
-            if (!right)
-            {
-                right = true;
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
-
-        }
-        else if (horizontalMovement < -flipTh) {
-            if (right)
-            {
-                right = false;
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-        }
-        
+            if (gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        else if (horizontalMovement < -flipTh)
+            if (!gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = true;
     }
 
+    bool CheckGround() {
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.75f, 10);
+        Debug.DrawLine((Vector2)transform.position, (Vector2)transform.position + (Vector2.down * 0.75f), Color.red, 1, false);
+        if (hit.collider != null) {
+            Debug.Log(hit.point);
+            return true;
+        }
 
+        return false;
+    }
 }
