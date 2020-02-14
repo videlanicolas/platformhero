@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 354827261}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 6622457249671449898, guid: 65a838c645cc834449395c9239944a90,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6622457249671449899, guid: 65a838c645cc834449395c9239944a90,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -325,6 +330,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6622457249671449898, guid: 65a838c645cc834449395c9239944a90,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6622457249671449899, guid: 65a838c645cc834449395c9239944a90,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -399,6 +409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622457249671449898, guid: 65a838c645cc834449395c9239944a90,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6622457249671449899, guid: 65a838c645cc834449395c9239944a90,
         type: 3}
@@ -603,6 +618,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpForce: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &1259780515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -640,6 +658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622457249671449898, guid: 65a838c645cc834449395c9239944a90,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6622457249671449899, guid: 65a838c645cc834449395c9239944a90,
         type: 3}
@@ -696,7 +719,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 65a838c645cc834449395c9239944a90, type: 3}
 --- !u!4 &1314069553 stripped
 Transform:
