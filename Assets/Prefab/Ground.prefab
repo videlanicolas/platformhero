@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6622457249671449899}
   - component: {fileID: 6622457249671449877}
-  - component: {fileID: 6622457249671449876}
+  - component: {fileID: 2902980184489044462}
   m_Layer: 8
-  m_Name: forest-2_3
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &6622457249671449876
-EdgeCollider2D:
+--- !u!61 &2902980184489044462
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,9 +96,16 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.056233883}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 1.4}
+    newSize: {x: 2.56, y: 1.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 1.2875322}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.328908, y: 0.5746641}
-  - {x: 0.051729202, y: 0.5812173}
-  - {x: 1.2800007, y: 0.58689094}
