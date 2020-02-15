@@ -16,7 +16,7 @@ public class HeroController : MonoBehaviour
     bool    jump, onGround, prevGround;
     Animator animator;
     Rigidbody2D rigidBody;
-    BoxCollider2D boxCollider;
+    CircleCollider2D circleColider;
     AudioSource audioSource;
     float leftLimit, rightLimit;
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class HeroController : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        circleColider = gameObject.GetComponent<CircleCollider2D>();
         audioSource = gameObject.GetComponent<AudioSource>();
         onGround = true;
         prevGround = true;
@@ -81,7 +81,7 @@ public class HeroController : MonoBehaviour
 
     bool CheckGround() {
         float extraY = 0.1f;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)boxCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y + extraY, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)circleColider.bounds.center, Vector2.down, circleColider.bounds.extents.y + extraY, groundLayer);
         if (hit.collider != null) {
             return true;
         }
