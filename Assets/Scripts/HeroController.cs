@@ -11,8 +11,7 @@ public class HeroController : MonoBehaviour
     [SerializeField]
     public LayerMask groundLayer;
 
-    float   flipTh = 0.01f,
-            horizontalMovement;
+    float   horizontalMovement;
     bool    jump, onGround, prevGround;
     Animator animator;
     Rigidbody2D rigidBody;
@@ -55,10 +54,14 @@ public class HeroController : MonoBehaviour
         }
 
         rigidBody.velocity = new Vector2(horizontalMovement * speed, rigidBody.velocity.y);
-        if (horizontalMovement > flipTh)
+        if (horizontalMovement > 0)
+        {
             if (gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        else if (horizontalMovement < -flipTh)
+        }
+        else if (horizontalMovement < 0)
+        {
             if (!gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     bool CheckGround() {
