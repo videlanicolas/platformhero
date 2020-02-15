@@ -36,7 +36,6 @@ public class HeroController : MonoBehaviour
         // FixedUpdate will check for "Jump", that's why we need to save the state of "Jump" until it's consumed by FixedUpdate.
         // This leads to no input loss on one-time key presses.
         if (!jump && onGround) jump = Input.GetButtonDown("Jump");
-        Debug.Log("Jump: " + jump);
         onGround = CheckGround();
         if (prevGround != onGround) {
             Debug.Log("onGround changed: " + onGround);
@@ -63,7 +62,7 @@ public class HeroController : MonoBehaviour
     }
 
     bool CheckGround() {
-        float extraY = 0.5f;
+        float extraY = 0.1f;
         RaycastHit2D hit = Physics2D.Raycast((Vector2)boxCollider.bounds.center, Vector2.down, boxCollider.bounds.extents.y + extraY, groundLayer);
         if (hit.collider != null) {
             return true;
