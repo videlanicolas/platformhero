@@ -18,6 +18,7 @@ public class HeroController : MonoBehaviour
     Rigidbody2D rigidBody;
     BoxCollider2D boxCollider;
     AudioSource audioSource;
+    float leftLimit, rightLimit;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,6 +29,11 @@ public class HeroController : MonoBehaviour
         onGround = true;
         prevGround = true;
         jump = false;
+
+        leftLimit = GameObject.FindGameObjectWithTag("LeftWall").transform.position.x;
+        rightLimit = GameObject.FindGameObjectWithTag("RightWall").transform.position.x;
+        Debug.Log(leftLimit);
+        Debug.Log(rightLimit);
     }
 
     // Update is called once per frame
@@ -68,6 +74,9 @@ public class HeroController : MonoBehaviour
         {
             if (!gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
+
+        // Clamp position to the start and end of the level, so the hero doesn't fall.
+        transform.position = (new Vector3(Mathf.Clamp(transform.position.x, leftLimit, rightLimit), transform.position.y));
     }
 
     bool CheckGround() {
