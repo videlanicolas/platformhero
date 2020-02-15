@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HeroWalk
+  m_Name: HeroJump
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,20 +22,11 @@ AnimationClip:
     - time: 0
       value: {fileID: 1914563275169840824, guid: 45c7736c924ab3e49aabc5b7333db29f,
         type: 3}
-    - time: 0.16666667
-      value: {fileID: -4378996295949237452, guid: 45c7736c924ab3e49aabc5b7333db29f,
-        type: 3}
-    - time: 0.33333334
-      value: {fileID: 5457183550987407018, guid: 45c7736c924ab3e49aabc5b7333db29f,
-        type: 3}
-    - time: 0.5
-      value: {fileID: -4378996295949237452, guid: 45c7736c924ab3e49aabc5b7333db29f,
-        type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 24
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -51,15 +42,12 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 1914563275169840824, guid: 45c7736c924ab3e49aabc5b7333db29f, type: 3}
-    - {fileID: -4378996295949237452, guid: 45c7736c924ab3e49aabc5b7333db29f, type: 3}
-    - {fileID: 5457183550987407018, guid: 45c7736c924ab3e49aabc5b7333db29f, type: 3}
-    - {fileID: -4378996295949237452, guid: 45c7736c924ab3e49aabc5b7333db29f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5416667
+    m_StopTime: 0.016666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

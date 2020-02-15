@@ -37,6 +37,7 @@ public class HeroController : MonoBehaviour
         // This leads to no input loss on one-time key presses.
         if (!jump && onGround) jump = Input.GetButtonDown("Jump");
         onGround = CheckGround();
+        animator.SetBool("OnGround", onGround);
         if (prevGround != onGround) {
             Debug.Log("onGround changed: " + onGround);
             prevGround = onGround;
