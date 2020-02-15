@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5205385715329859665}
   m_Layer: 8
-  m_Name: FarAwayTree1
+  m_Name: FarAwayBigTree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411126424297208446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.74831676, y: -0.89668, z: 49.038647}
+  m_LocalPosition: {x: 0.74831676, y: -0.88, z: 49.038647}
   m_LocalScale: {x: 1.68237, y: 1.0044, z: 1.0044}
   m_Children: []
   m_Father: {fileID: 5205385715329859665}
@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411126424672378852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.56344, y: 6.5092, z: 49.038647}
+  m_LocalPosition: {x: 0.56344, y: 6.55, z: 49.038647}
   m_LocalScale: {x: 1.68237, y: 1.0044, z: 1.0044}
   m_Children: []
   m_Father: {fileID: 5205385715329859665}
@@ -223,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411126424990905199}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.56344, y: 3.9548, z: 49.038647}
+  m_LocalPosition: {x: 0.56344, y: 3.998, z: 49.038647}
   m_LocalScale: {x: 1.68237, y: 1.0044, z: 1.0044}
   m_Children: []
   m_Father: {fileID: 5205385715329859665}
@@ -305,7 +305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411126425298499112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.56174, y: 1.4036, z: 49.038647}
+  m_LocalPosition: {x: 0.56174, y: 1.43, z: 49.038647}
   m_LocalScale: {x: 1.68237, y: 1.0044, z: 1.0044}
   m_Children: []
   m_Father: {fileID: 5205385715329859665}

@@ -10,18 +10,21 @@ public class HeroController : MonoBehaviour
     public float jumpForce;
     [SerializeField]
     public LayerMask groundLayer;
+    public AudioClip jumpSound;
 
     float   horizontalMovement;
     bool    jump, onGround, prevGround;
     Animator animator;
     Rigidbody2D rigidBody;
     BoxCollider2D boxCollider;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         onGround = true;
         prevGround = true;
         jump = false;
@@ -53,6 +56,7 @@ public class HeroController : MonoBehaviour
             // jump = false;
             jump = false;
             rigidBody.AddForce(jumpForce * transform.up, ForceMode2D.Impulse);
+            audioSource.PlayOneShot(jumpSound);
         }
 
         rigidBody.velocity = new Vector2(horizontalMovement * speed, rigidBody.velocity.y);
