@@ -31,6 +31,7 @@ public class HeroController : MonoBehaviour
     void Update()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Update runs with every frame, we get the "Jump" input here because it's the fastest way posible.
         // FixedUpdate will check for "Jump", that's why we need to save the state of "Jump" until it's consumed by FixedUpdate.
         // This leads to no input loss on one-time key presses.
