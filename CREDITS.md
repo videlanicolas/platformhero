@@ -7,3 +7,4 @@ Here is all the copyright information for the assets downlaoded from the Interne
 * [Hero jump](https://opengameart.org/content/platformer-jumping-sounds): Credit to [dklon](https://opengameart.org/users/dklon).
 ## Music
 * [Level background music](https://opengameart.org/content/platformer-game-music-pack): Credit to [codemanu](https://opengameart.org/users/codemanu).
+* [Lose level music](https://opengameart.org/content/lose-music-3): Credit to [remaxim](https://opengameart.org/users/remaxim).
