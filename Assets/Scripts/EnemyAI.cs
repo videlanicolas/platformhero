@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float horizontalMovement, startRoute, timer;
     AImethod method;
-    bool playerDead;
+    bool playerDead, dead;
 
     const float lightWalk = 0.1f,
                 fastWalk = 0.5f,
@@ -68,6 +68,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         playerDead = false;
+        dead = false;
         timer = 0;
     }
     // Start is called before the first frame update
@@ -80,7 +81,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerDead) return;
+        if (playerDead || dead) return;
         animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Call the method that executes the AI.
         method();
@@ -135,5 +136,27 @@ public class EnemyAI : MonoBehaviour
             PatrolAI();
             timer = 0;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject.GetComponent<HeroController>().godMode)
+            {
+                Dead();
+            }
+        }
+    }
+
+    void Dead()
+    {
+        transform.Rotate(0, 0, 90);
+        animator.SetBool("Dead", true);
+        horizontalMovement = 0;
+        rigidBody.AddForce(4 * Vector2.up, ForceMode2D.Impulse);
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        dead = true;
     }
 }
