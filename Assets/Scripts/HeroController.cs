@@ -32,8 +32,6 @@ public class HeroController : MonoBehaviour
 
         leftLimit = GameObject.FindGameObjectWithTag("LeftWall").transform.position.x;
         rightLimit = GameObject.FindGameObjectWithTag("RightWall").transform.position.x;
-        Debug.Log(leftLimit);
-        Debug.Log(rightLimit);
     }
 
     // Update is called once per frame
@@ -86,5 +84,20 @@ public class HeroController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            transform.Rotate(0, 0, 90);
+            return;
+        }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            transform.Rotate(0, 0, 90);
+            Destroy(collision.gameObject);
+            return;
+        }
     }
 }

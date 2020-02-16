@@ -2311,6 +2311,11 @@ PrefabInstance:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 8300000, guid: cdf571878f475cb408f693d7c33b6d80, type: 3}
+    - target: {fileID: 4466048112880500118, guid: 6c381fdc77d5bb64d94fa46886772295,
+        type: 3}
+      propertyPath: jumpForce
+      value: 13.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4466048112880500119, guid: 6c381fdc77d5bb64d94fa46886772295,
         type: 3}
       propertyPath: m_Offset.y
@@ -3109,6 +3114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 6627119282388215037, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
         type: 3}
       propertyPath: player
@@ -3123,6 +3133,37 @@ PrefabInstance:
         type: 3}
       propertyPath: endRoute
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: detectionLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: AItype
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6361039964733993937, guid: 990755e8f94a3304b83fbf2d35f0ee56,
+        type: 3}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: timeToShoot
+      value: 1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: bulletInstantiateVector.x
+      value: -0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647382525890753955, guid: 71116bc404c4e9145aa969f83a23e83f,
+        type: 3}
+      propertyPath: bulletInstantiateVector.y
+      value: -0.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71116bc404c4e9145aa969f83a23e83f, type: 3}

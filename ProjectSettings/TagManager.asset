@@ -7,6 +7,7 @@ TagManager:
   - LeftWall
   - RightWall
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

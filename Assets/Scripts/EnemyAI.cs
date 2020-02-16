@@ -15,12 +15,22 @@ public class EnemyAI : MonoBehaviour
     [Range(0f, 10f)]
     public float speed;
     public GameObject player;
+    [Range(0f, 10f)]
+    public float detectionLength;
     public AIType AItype = AIType.None;
+    [Range(0f, 10f)]
     public float endRoute;
+    public GameObject bullet;
+    public Vector2 bulletInstantiateVector;
+    [Range(0f, 5f)]
+    public float timeToShoot;
+    [Range(0f, 1f)]
+    public float bulletSpeed;
 
     Rigidbody2D rigidBody;
     Animator animator;
-    float horizontalMovement, startRoute;
+    SpriteRenderer spriteRenderer;
+    float horizontalMovement, startRoute, timer;
     AImethod method;
 
     const float lightWalk = 0.1f,
@@ -36,6 +46,7 @@ public class EnemyAI : MonoBehaviour
 
         animator = gameObject.GetComponent<Animator>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         // We do this once and load the method that needs to execute on Update.
         switch (AItype) {
@@ -48,6 +59,8 @@ public class EnemyAI : MonoBehaviour
             default:
                 break;
         }
+
+        timer = 0;
     }
     // Start is called before the first frame update
     void Start()
@@ -62,31 +75,55 @@ public class EnemyAI : MonoBehaviour
         animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Call the method that executes the AI.
         method();
+        if (animator.GetBool("PointGun")) timer += Time.deltaTime;
     }
 
     private void FixedUpdate()
     {
         rigidBody.velocity = new Vector2(horizontalMovement * speed, rigidBody.velocity.y);
-        if (horizontalMovement < 0)
-        {
-            if (gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (horizontalMovement > 0)
-        {
-            if (!gameObject.GetComponent<SpriteRenderer>().flipX) gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
+        if (horizontalMovement < 0) spriteRenderer.flipX = false;
+        else if (horizontalMovement > 0) spriteRenderer.flipX = true;
     }
 
     private void PatrolAI() 
     {
-        if ((transform.position.x - startRoute >= endRoute) || (transform.position.x - startRoute <= 0))
+        if (transform.position.x - startRoute >= endRoute)
         {
-            horizontalMovement = -horizontalMovement;
+            horizontalMovement = -lightWalk;
+        }
+        if (transform.position.x - startRoute <= 0)
+        {
+            horizontalMovement = lightWalk;
         }
     }
 
     private void ShootAI() 
     {
+        // Check if Hero is near.
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) <= detectionLength)
+        {
+            // Stop and Draw gun.
+            horizontalMovement = 0;
+            animator.SetBool("PointGun", true);
+            // Look towards player.
+            if (player.transform.position.x > transform.position.x) spriteRenderer.flipX = true;
+            else spriteRenderer.flipX = false;
 
+            if (timer >= timeToShoot)
+            {
+                timer = 0;
+                // Shoot the Player.
+                Vector2 flippedInstantiateVector = spriteRenderer.flipX ? bulletInstantiateVector * new Vector2(-1, 1) : bulletInstantiateVector;
+                bullet = Instantiate(bullet, (Vector2)transform.position + flippedInstantiateVector, Quaternion.Euler(0, 0, 0));
+                bullet.GetComponent<BulletController>().speed = spriteRenderer.flipX ? bulletSpeed : -bulletSpeed;
+            }
+        }
+        else
+        {
+            // Hero is not close, keep patrolling.
+            animator.SetBool("PointGun", false);
+            if (horizontalMovement == 0) horizontalMovement = lightWalk;
+            PatrolAI();
+        }
     }
 }
