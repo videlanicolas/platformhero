@@ -32,10 +32,17 @@ public class EnemyAI : MonoBehaviour
     SpriteRenderer spriteRenderer;
     float horizontalMovement, startRoute, timer;
     AImethod method;
+    bool playerDead;
 
     const float lightWalk = 0.1f,
                 fastWalk = 0.5f,
                 run = 1f;
+
+    // Method called by Player once it's dead.
+    public void PlayerDead()
+    {
+        playerDead = true;
+    }
 
     private void Awake()
     {
@@ -60,6 +67,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
 
+        playerDead = false;
         timer = 0;
     }
     // Start is called before the first frame update
@@ -72,6 +80,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerDead) return;
         animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Call the method that executes the AI.
         method();
@@ -114,8 +123,8 @@ public class EnemyAI : MonoBehaviour
                 timer = 0;
                 // Shoot the Player.
                 Vector2 flippedInstantiateVector = spriteRenderer.flipX ? bulletInstantiateVector * new Vector2(-1, 1) : bulletInstantiateVector;
-                bullet = Instantiate(bullet, (Vector2)transform.position + flippedInstantiateVector, Quaternion.Euler(0, 0, 0));
-                bullet.GetComponent<BulletController>().speed = spriteRenderer.flipX ? bulletSpeed : -bulletSpeed;
+                GameObject firedBullet = Instantiate(bullet, (Vector2)transform.position + flippedInstantiateVector, Quaternion.Euler(0, 0, 0));
+                firedBullet.GetComponent<BulletController>().speed = spriteRenderer.flipX ? bulletSpeed : -bulletSpeed;
             }
         }
         else
@@ -124,6 +133,7 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("PointGun", false);
             if (horizontalMovement == 0) horizontalMovement = lightWalk;
             PatrolAI();
+            timer = 0;
         }
     }
 }

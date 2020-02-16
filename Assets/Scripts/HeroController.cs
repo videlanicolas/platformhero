@@ -11,6 +11,7 @@ public class HeroController : MonoBehaviour
     [SerializeField]
     public LayerMask groundLayer;
     public AudioClip jumpSound;
+    public bool godMode = false;
 
     float   horizontalMovement;
     bool    jump, onGround, prevGround;
@@ -37,6 +38,8 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If the player is dead, we don't have to take any other input.
+        if (animator.GetBool("Dead")) return;
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Update runs with every frame, we get the "Jump" input here because it's the fastest way posible.
@@ -88,16 +91,33 @@ public class HeroController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // We use CompareTag instead of aswitch statement because CompareTag is faster than getting the tag.
         if (collision.gameObject.CompareTag("Enemy")) 
         {
-            transform.Rotate(0, 0, 90);
+            Dead();
             return;
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            transform.Rotate(0, 0, 90);
+            Dead();
+            // Because we have to destroy the Bullet, we need to duplicate the logic.
             Destroy(collision.gameObject);
             return;
+        }
+    }
+
+    // Called when the player is dead.
+    private void Dead()
+    {
+        if (godMode) return;
+        transform.Rotate(0, 0, 90);
+        animator.SetBool("Dead", true);
+        horizontalMovement = 0;
+
+        // Let all enemies know that the player is dead.
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            enemy.GetComponent<EnemyAI>().PlayerDead();
         }
     }
 }

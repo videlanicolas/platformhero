@@ -10,27 +10,48 @@ PrefabInstance:
     - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
       propertyPath: speed
-      value: 2.9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
       propertyPath: AItype
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
       propertyPath: endRoute
-      value: 3.51
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
       propertyPath: timeToShoot
-      value: 2
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
       propertyPath: bulletSpeed
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
+        type: 3}
+      propertyPath: detectionLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6361039964733993937, guid: 990755e8f94a3304b83fbf2d35f0ee56,
+        type: 3}
+    - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
+        type: 3}
+      propertyPath: bulletInstantiateVector.x
+      value: -0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038353739604549421, guid: e4f4a22c06547554fa67ffa6b405f5e3,
+        type: 3}
+      propertyPath: bulletInstantiateVector.y
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 7337292772038195049, guid: e4f4a22c06547554fa67ffa6b405f5e3,
         type: 3}
