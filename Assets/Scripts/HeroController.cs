@@ -14,12 +14,14 @@ public class HeroController : MonoBehaviour
     public bool godMode = false;
 
     float   horizontalMovement;
-    bool    jump, onGround, prevGround;
+    bool    jump, onGround, prevGround, won;
     Animator animator;
     Rigidbody2D rigidBody;
     CircleCollider2D circleColider;
     AudioSource audioSource;
     float leftLimit, rightLimit;
+    GameObject levelController;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,9 +29,11 @@ public class HeroController : MonoBehaviour
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         circleColider = gameObject.GetComponent<CircleCollider2D>();
         audioSource = gameObject.GetComponent<AudioSource>();
+        levelController = GameObject.FindGameObjectWithTag("LevelController");
         onGround = true;
         prevGround = true;
         jump = false;
+        won = false;
 
         leftLimit = GameObject.FindGameObjectWithTag("LeftWall").transform.position.x;
         rightLimit = GameObject.FindGameObjectWithTag("RightWall").transform.position.x;
@@ -39,7 +43,7 @@ public class HeroController : MonoBehaviour
     void Update()
     {
         // If the player is dead, we don't have to take any other input.
-        if (animator.GetBool("Dead")) return;
+        if (animator.GetBool("Dead") || won) return;
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Velocity", Mathf.Abs(horizontalMovement));
         // Update runs with every frame, we get the "Jump" input here because it's the fastest way posible.
@@ -119,5 +123,16 @@ public class HeroController : MonoBehaviour
         {
             enemy.GetComponent<EnemyAI>().PlayerDead();
         }
+
+        levelController.GetComponent<LevelController>().Dead();
+        rigidBody.AddForce(4 * Vector2.up, ForceMode2D.Impulse);
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+    }
+
+    public void Won()
+    {
+        won = true;
+        horizontalMovement = 1f;
     }
 }

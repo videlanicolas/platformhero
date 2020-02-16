@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     public float timeToShoot;
     [Range(0f, 1f)]
     public float bulletSpeed;
+    public AudioClip shotAudioClip;
 
     Rigidbody2D rigidBody;
     Animator animator;
@@ -33,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     float horizontalMovement, startRoute, timer;
     AImethod method;
     bool playerDead, dead;
+    AudioSource audioSource;
 
     const float lightWalk = 0.1f,
                 fastWalk = 0.5f,
@@ -54,6 +56,7 @@ public class EnemyAI : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         // We do this once and load the method that needs to execute on Update.
         switch (AItype) {
@@ -123,6 +126,7 @@ public class EnemyAI : MonoBehaviour
             {
                 timer = 0;
                 // Shoot the Player.
+                audioSource.PlayOneShot(shotAudioClip);
                 Vector2 flippedInstantiateVector = spriteRenderer.flipX ? bulletInstantiateVector * new Vector2(-1, 1) : bulletInstantiateVector;
                 GameObject firedBullet = Instantiate(bullet, (Vector2)transform.position + flippedInstantiateVector, Quaternion.Euler(0, 0, 0));
                 firedBullet.GetComponent<BulletController>().speed = spriteRenderer.flipX ? bulletSpeed : -bulletSpeed;

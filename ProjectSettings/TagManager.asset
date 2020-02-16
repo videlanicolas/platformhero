@@ -8,6 +8,7 @@ TagManager:
   - RightWall
   - Enemy
   - Bullet
+  - LevelController
   layers:
   - Default
   - TransparentFX
