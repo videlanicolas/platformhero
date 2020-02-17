@@ -42,13 +42,14 @@ public class LevelController : MonoBehaviour
 
     IEnumerator ReloadScene()
     {
-        yield return new WaitForSeconds(3);
-        // Fade to black.
-        for (float i = 0; i < 255; i++)
+        yield return new WaitForSeconds(1);
+        Image panel = canvas.GetComponentInChildren<Image>();
+        for (float i = 0; i < 1; i += Time.deltaTime)
         {
-            yield return new WaitForSeconds(1f);
-            canvas.GetComponentInChildren<Image>().color = new Color(0, 0, 0, i);
+            yield return new WaitForSeconds(0.01f);
+            panel.color = Color.Lerp(Color.clear, Color.black, i);
         }
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Level1");
     }
 
