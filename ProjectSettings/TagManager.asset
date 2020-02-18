@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - LevelController
   - Canvas
+  - Enemies
   layers:
   - Default
   - TransparentFX
